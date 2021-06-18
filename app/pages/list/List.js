@@ -8,17 +8,15 @@ function renderItem({item}) {
     <ListItem>
       <Body>
         <Text>{item.prodName}</Text>
-        <Text>{item.prodPrice}</Text>
       </Body>
       <Right>
-        <Text>{item.prodPrice}</Text>
+        <Text>{item.prodId}</Text>
       </Right>
     </ListItem>
   );
 }
 
 function List({navigation, dispatch, data, stickyHeaderIndices}) {
-  const [listdata] = useState(data);
   useEffect(() => {
     dispatch({
       type: 'list/getProducts',
@@ -28,7 +26,7 @@ function List({navigation, dispatch, data, stickyHeaderIndices}) {
 
   return (
     <FlatList
-      data={listdata}
+      data={data}
       renderItem={renderItem}
       keyExtractor={item => item.name}
       stickyHeaderIndices={stickyHeaderIndices}

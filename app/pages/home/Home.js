@@ -21,10 +21,10 @@ import {
 } from 'native-base';
 
 function Home({navigation, dispatch, name, modalVisible}) {
-  const [prodId, setProdId] = useState('bbb');
-  const [prodName, setProdName] = useState('测试2');
-  const [prodDesc, setProdDesc] = useState('dfdf');
-  const [prodPrice, setProdPrice] = useState(10);
+  const [prodId, setProdId] = useState('');
+  const [prodName, setProdName] = useState('');
+  const [prodDesc, setProdDesc] = useState('');
+  const [prodPrice, setProdPrice] = useState(0);
 
   const setModalVisible = modalVisible => {
     dispatch({
@@ -40,7 +40,7 @@ function Home({navigation, dispatch, name, modalVisible}) {
       <Text>主页{name}</Text>
       <View>
         <Modal
-          animationType="slide"
+          animationType="fade"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
@@ -58,38 +58,22 @@ function Home({navigation, dispatch, name, modalVisible}) {
               <Form>
                 <Item floatingLabel>
                   <Label>ID</Label>
-                  <Input
-                    value={prodId}
-                    onChange={e => {
-                      setProdId(e.target.value);
-                    }}
-                  />
+                  <Input value={prodId} onChangeText={setProdId} />
                 </Item>
                 <Item floatingLabel last>
                   <Label>名称</Label>
-                  <Input
-                    value={prodName}
-                    onChange={e => {
-                      setProdName(e.target.value);
-                    }}
-                  />
+                  <Input value={prodName} onChangeText={setProdName} />
                 </Item>
                 <Item floatingLabel last>
                   <Label>描述</Label>
-                  <Input
-                    value={prodDesc}
-                    onChange={e => {
-                      setProdDesc(e.target.value);
-                    }}
-                  />
+                  <Input value={prodDesc} onChangeText={setProdDesc} />
                 </Item>
                 <Item floatingLabel last>
                   <Label>价格</Label>
                   <Input
                     value={prodPrice}
-                    onChange={e => {
-                      setProdPrice(e.target.value);
-                    }}
+                    type="number"
+                    onChangeText={setProdPrice}
                   />
                 </Item>
               </Form>
@@ -107,9 +91,15 @@ function Home({navigation, dispatch, name, modalVisible}) {
                         prodId,
                         prodName,
                         prodDesc,
+                        prodImage: '',
                         prodPrice,
                       },
                     });
+
+                    setProdId('');
+                    setProdName('');
+                    setProdDesc('');
+                    setProdPrice(0);
                     setModalVisible(!modalVisible);
                   }}>
                   <Icon name="open" />

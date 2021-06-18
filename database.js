@@ -2,7 +2,7 @@ import SQLite from 'react-native-sqlite-storage';
 SQLite.DEBUG(true);
 SQLite.enablePromise(true);
 
-const database_name = 'YourList.db';
+const database_name = 'YourList1.db';
 const database_version = '1.0';
 const database_displayname = 'Your List Offline Database';
 const database_size = 200000;
